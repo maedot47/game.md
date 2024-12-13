@@ -1,0 +1,44 @@
+let introScreen = true;
+function draw() {
+  if (introScreen) {
+    displayIntroScreen();
+  } else {
+    background(220);
+    drawBoard();
+    displayStores();
+    displayOverallScores();
+    displayCurrentPlayer();
+    let currentTime = millis()
+    if (currentTime - playStartTime > moveTimerLimit) {
+      switchPlayer()
+      resetTimer()
+    }
+    fill('red')
+    text(`Timer: ${Math.round(currentTime - playStartTime)}`, width/2, 20)
+    if (gameOver) {
+      displayGameOver();
+    }
+    if (levelTransition) {
+      displayLevelTransition();
+    }
+  }
+}
+function displayIntroScreen() {
+  background(220);
+  fill(0);
+  textSize(15);
+  text("Mancala Game(ethoipian traditional game)", width / 2, height / 2 - 150);
+  textSize(16);
+  text("Instructions:", width / 2, height / 2 - 90);
+  text("1. you can only move the stones  on  your side.", width / 2, height / 2 - 60)
+
+  text("1, Mancala (ethopia)is a traditional board game played with stones and pits.", width / 2, height / 2 - 30);
+  text("2,Each player has a row of pits and a store on their side of the board.", width / 2, height / 2 + 10);
+  text("3, To play, click on your side of the board to move stones.", width / 2, height / 2 + 40);
+  text("4,The stones will be distributed counterclockwise, one in each pit, including your store.", width / 2, height / 2 + 70);
+  text("5,If the last stone lands in your store, you get another turn.", width / 2, height / 2 + 100);
+  text("6, if you turm ends in your store, you get another turn", width / 2, height / 2 + 120);
+  text("7,The game ends when one side of the board is empty. The player with the most stones in their store wins.", width / 2, height / 2 + 145);
+  text("8,if you did not press in yourturn you gonna lose your score and you gonna lose your turn too .", width / 2, height / 2 + 165);
+  text("9, Press ENTER to start playing.", width / 2, height / 2 + 185);
+}
