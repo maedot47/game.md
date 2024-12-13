@@ -1,0 +1,37 @@
+function keyPressed() {
+  if (introScreen && keyCode === ENTER) {
+    introScreen = false;
+    loop(); // Start the game loop
+  } else if (levelTransition && keyCode === ENTER) {
+    level++;
+    initializeGame();
+    loop();
+  } else if (gameOver && keyCode === ENTER) {
+    if (level <= 3) {
+      initializeGame();
+      loop();
+    }
+  }
+  if (levelTransition && keyCode === ENTER) {
+    level++;
+    initializeGame();
+    loop();
+  } else if (gameOver && keyCode === ENTER) {
+    if (level <= 3) {
+      initializeGame();
+      loop();
+    }
+  }
+}
+function mousePressed() {
+  if (!gameOver && !levelTransition) {
+    let selectedPit = getSelectedPit(mouseX, mouseY);
+    if (selectedPit !== -1 && isValidMove(selectedPit)) {
+      moveStones(selectedPit);
+      if (!checkExtraTurn(selectedPit)) {
+        switchPlayer()
+      }
+      checkEndGame();
+    }
+  }
+}
